@@ -9,6 +9,7 @@ import '@/index.css';
 import Home from '@/pages/home/index';
 import About from '@/pages/about/index';
 import reportWebVitals from './reportWebVitals';
+import 'antd/dist/antd.css'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
