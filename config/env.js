@@ -6,7 +6,8 @@ const paths = require('./paths');
 
 // Make sure that including paths.js after env.js will read .env variables.
 delete require.cache[require.resolve('./paths')];
-
+const dotenv = require("dotenv");
+dotenv.config()
 const NODE_ENV = process.env.NODE_ENV;
 if (!NODE_ENV) {
   throw new Error(
@@ -62,7 +63,7 @@ const REACT_APP = /^REACT_APP_/i;
 
 function getClientEnvironment(publicUrl) {
   const raw = Object.keys(process.env)
-    .filter(key => REACT_APP.test(key))
+    // .filter(key => REACT_APP.test(key))
     .reduce(
       (env, key) => {
         env[key] = process.env[key];
@@ -96,6 +97,7 @@ function getClientEnvironment(publicUrl) {
       env[key] = JSON.stringify(raw[key]);
       return env;
     }, {}),
+    'process.he': "'xxxxx'"
   };
 
   return { raw, stringified };
