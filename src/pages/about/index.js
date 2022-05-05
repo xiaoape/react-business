@@ -1,18 +1,19 @@
 /*
  * @Author: your name
  * @Date: 2022-04-28 16:23:08
- * @LastEditTime: 2022-05-05 19:01:42
+ * @LastEditTime: 2022-05-05 19:56:17
  * @LastEditors: bruceliu bruceliu@nswap.com
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: /react-business/src/pages/about/index.js
  */
 import { previewShow } from '@/components/preview';
 import BigNumber from 'bignumber.js'
-import { useState, useReducer } from "react";
+import { useState, useReducer, useRef, useEffect } from "react";
 function About() {
 
   const [count, setCount] = useState(0)
   const [count2, dispatch] = useReducer(reducerAlert, {count2: 0})
+  const latestCount = useRef(count)
   const handleClick = () => {
     console.log('handleClick')
     previewShow()
@@ -31,6 +32,29 @@ function About() {
     }
 
     return { ...state, ...newState }
+  }
+
+  function handleAlertClick() {
+    setTimeout(() => {
+      // alert('You clicked on: ' + count);
+
+      // 模拟异步回调中读取最新的state
+      alert('You clicked on: ' + latestCount.current);
+    }, 3000);
+
+    // alert('You clicked on: ' + count);
+
+  }
+
+  useEffect(() => {
+    // 在这里修改ref，拿到的是最新的count
+    latestCount.current = count
+  }, [count])
+
+  const handleClickMe = () => {
+    // 在这里修改ref，拿到的是最新count的上一次的值
+    // latestCount.current = count
+    setCount(count + 1)
   }
   const handleClickTwo = () => {
     console.log(count, 'count one')
@@ -53,6 +77,13 @@ function About() {
       <div>{`直接使用0.2 + 0.1: ${0.2 + 0.1}`}</div>
       <div>{`使用BigNumber进行0.2 + 0.1: ${y.toNumber()}`}</div>
       <button onClick={handleClickTwo}>click</button>
+      <p>You clicked {count} times</p>
+      <button onClick={handleClickMe}>
+        Click me
+      </button>
+      <button onClick={handleAlertClick}>
+        Show alert
+      </button>
     </div>
   );
 }
