@@ -47,4 +47,5 @@ npm run deploy
 点击生成的连接，查看是否部署成功。
 
 
-按照这个步骤部署了一遍，已经在远程看到了gh-pages分支，并且自动去save了gh-pages分支，打开依旧没有效果，且不报错白屏。
+
+注意：github pages不支持browserRouter，这样你可能会看不到内容，需要切换成hash模式
