@@ -64,6 +64,7 @@
   "scripts": {
     "start": "node scripts/start.js",
     "dev": "ENV=pre node scripts/start.js",
+    "deploy": "gh-pages -d build",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js"
   },
@@ -142,6 +143,8 @@
     ]
   },
   "devDependencies": {
-    "dotenv": "^16.0.0"
-  }
+    "dotenv": "^16.0.0",
+    "gh-pages": "^3.2.3"
+  },
+  "homepage": "./"
 }
