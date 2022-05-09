@@ -2,7 +2,7 @@ import { previewShow } from '@/components/preview';
 import BigNumber from 'bignumber.js'
 import { useState, useReducer, useRef, useEffect } from "react";
 import MarketItem from '../../components/marketItem';
-import { Foo } from 'component-lib-bruce-test';
+import { Foo, RankList } from 'component-lib-bruce-test';
 function About() {
 
   const [count, setCount] = useState(0)
@@ -13,6 +13,11 @@ function About() {
     console.log('handleClick')
     previewShow()
   }
+
+  const data = Array.from(new Array(10)).map((_, idx) => ({
+    label: `选项${idx + 1}`,
+    value: 10 - idx,
+  }));
 
   function reducerAlert(state, action) {
     let newState = {}
@@ -95,6 +100,7 @@ function About() {
       </button>
       <MarketItem userInfo={userInfo}></MarketItem>
       <Foo title="First Demo" />
+      <RankList data={data}></RankList>
     </div>
   );
 }
