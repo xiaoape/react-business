@@ -1,15 +1,8 @@
-/*
- * @Author: your name
- * @Date: 2022-04-28 16:23:08
- * @LastEditTime: 2022-05-06 10:45:51
- * @LastEditors: bruceliu bruceliu@nswap.com
- * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- * @FilePath: /react-business/src/pages/about/index.js
- */
 import { previewShow } from '@/components/preview';
 import BigNumber from 'bignumber.js'
 import { useState, useReducer, useRef, useEffect } from "react";
 import MarketItem from '../../components/marketItem';
+import { Foo } from 'component-lib-bruce-test';
 function About() {
 
   const [count, setCount] = useState(0)
@@ -101,6 +94,7 @@ function About() {
         update useInfo
       </button>
       <MarketItem userInfo={userInfo}></MarketItem>
+      <Foo title="First Demo" />
     </div>
   );
 }
