@@ -2,13 +2,30 @@ import { previewShow } from '@/components/preview';
 import BigNumber from 'bignumber.js'
 import { useState, useReducer, useRef, useEffect } from "react";
 import MarketItem from '../../components/marketItem';
-import { Foo, RankList } from 'component-lib-bruce-test';
+import { Foo, RankList, CountdownButton } from 'component-lib-bruce-test';
 function About() {
 
   const [count, setCount] = useState(0)
   const [count2, dispatch] = useReducer(reducerAlert, {count2: 0})
   const latestCount = useRef(count)
   const [userInfo, setUserInfo] = useState({name: 'allen'})
+  const [loading, setLoading] = useState(false);
+
+  const getCode = async () => {
+    setLoading(true);
+    try {
+      return await new Promise((resolve) =>
+        setTimeout(() => {
+          resolve(123);
+        }, 1000),
+      );
+    } catch (err) {
+      throw new Error('failed');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleClick = () => {
     console.log('handleClick')
     previewShow()
@@ -101,6 +118,16 @@ function About() {
       <MarketItem userInfo={userInfo}></MarketItem>
       <Foo title="First Demo" />
       <RankList data={data}></RankList>
+      <CountdownButton
+        loading={loading}
+        onClick={async (completeCallback) => {
+          const code = await getCode();
+          console.log(`验证码：${code}`);
+          // completeCallback();
+        }}
+    >
+      获取验证码
+    </CountdownButton>
     </div>
   );
 }
